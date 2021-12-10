@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.user.User;
 import com.example.demo.repository.SiteUserRepository;
+import com.example.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -8,12 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Controller
 public class SecurityController {
 
-    private final SiteUserRepository userRepository;
+    private final SiteUserRepository siteUserRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
 
     @GetMapping("/login")
     public String login() {
@@ -22,15 +27,21 @@ public class SecurityController {
 
     @GetMapping("/")
     public String showMenu(Authentication loginUser, Model model) {
+        System.out.println(loginUser.getName());
         model.addAttribute("username", loginUser.getName());
 //        model.addAttribute("role", loginUser.getAuthorities());
+
+        List<User> userList = userRepository.findByUserRole(1);
+
+        System.out.println(userList.get(0).getUserId());
+//
         System.out.println("ここまできたよ");
         return "teacher_main_menu";
     }
 
 //    @GetMapping("/admin/list")
 //    public String showAdminList(Model model) {
-//        model.addAttribute("users", userRepository.findAll());
+//        model.addAttribute("users", siteUserRepository.findAll());
 //        return "list";
 //    }
 //
@@ -54,7 +65,7 @@ public class SecurityController {
 //        } else {
 //            user.setRole(Role.USER.name());
 //        }
-//        userRepository.save(user);
+//        siteUserRepository.save(user);
 //
 //        return "redirect:/login?register";
 //    }
