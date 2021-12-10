@@ -18,8 +18,8 @@ public class User implements Serializable {
     @Column(name = "user_name", nullable = false)
     private String userName;
 
-    @Column(name = "user_role", nullable = false)
-    private int userRole;
+//    @Column(name = "user_role", nullable = false)
+//    private int userRole;
 
     @OneToMany
     @JoinColumn(name="user_id",referencedColumnName = "user_id",insertable = false, updatable=false)

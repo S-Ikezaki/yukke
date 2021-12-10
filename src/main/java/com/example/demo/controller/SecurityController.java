@@ -1,11 +1,6 @@
 package com.example.demo.controller;
-<<<<<<< HEAD
-=======
-
 import com.example.demo.model.user.User;
-import com.example.demo.repository.SiteUserRepository;
 import com.example.demo.repository.UserRepository;
->>>>>>> d6e6e5e81d0bfaf954c4b806517282ee3aba3604
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,14 +16,6 @@ import java.util.List;
 @Controller
 public class SecurityController {
 
-<<<<<<< HEAD
-//    private final CertificationRepository userRepository;
-=======
-    private final SiteUserRepository siteUserRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
-    private final UserRepository userRepository;
->>>>>>> d6e6e5e81d0bfaf954c4b806517282ee3aba3604
-
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -39,11 +26,6 @@ public class SecurityController {
         System.out.println(loginUser.getName());
         model.addAttribute("username", loginUser.getName());
 //        model.addAttribute("role", loginUser.getAuthorities());
-
-        List<User> userList = userRepository.findByUserRole(1);
-
-        System.out.println(userList.get(0).getUserId());
-//
         System.out.println("ここまできたよ");
         return "teacher_main_menu";
     }

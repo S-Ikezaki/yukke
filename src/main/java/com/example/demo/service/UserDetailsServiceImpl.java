@@ -17,13 +17,13 @@ import java.util.Set;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final CertificationRepository userRepository;
+    private final CertificationRepository certificationRepository;
 
     @Override
     public UserDetails loadUserByUsername(String userId)
             throws UsernameNotFoundException {
 
-        Certification certification = userRepository.findByUserId(userId);
+        Certification certification = certificationRepository.findByUserId(userId);
         if (certification == null) {
             throw new UsernameNotFoundException(userId + " not found");
         }

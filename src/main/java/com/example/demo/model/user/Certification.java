@@ -17,7 +17,8 @@ public class Certification implements Serializable{
     @Column(name = "password", nullable = false)
     private String password;
 
-//    private String role;   //仮
+    @Column(name = "role", nullable = false)
+    private int role;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id",insertable = false, updatable=false)
