@@ -1,19 +1,18 @@
 package com.example.demo.controller;
-
-import com.example.demo.repository.SiteUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @RequiredArgsConstructor
 @Controller
 public class SecurityController {
 
-    private final SiteUserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+//    private final CertificationRepository userRepository;
 
     @GetMapping("/login")
     public String login() {
@@ -27,6 +26,8 @@ public class SecurityController {
         System.out.println("ここまできたよ");
         return "teacher_main_menu";
     }
+}
+
 
 //    @GetMapping("/admin/list")
 //    public String showAdminList(Model model) {
@@ -60,9 +61,11 @@ public class SecurityController {
 //    }
 
 //    @GetMapping("/login")
-//    public String LoginTest(@ModelAttribute("password") String password, Model model, BindingResult result) {
+//    public String LoginTest(@ModelAttribute("password") String password,
+//                            @ModelAttribute("username") String username, Model model, BindingResult result) {
 //
 //        System.out.println("きたよ！！！！！" + "pass:" + password);
+//        System.out.println("きたよ！！！！！" + "username:" + password);
 //
 //        if(passwordEncoder.matches(password, "$2a$10$5ncQDg2b6lYG1muj08f6l.lCaRbU3N2rfdzI/epwDnKBC8zikEguS")) {
 //            System.out.println("一致したよ");
@@ -77,4 +80,3 @@ public class SecurityController {
 //        model.addAttribute("password", "password");
 //        return "login";
 //    }
-}
