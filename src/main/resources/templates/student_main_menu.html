@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html layout:decorate="~{/layout/layout}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/layout}">
+      xmlns:th="http://www.thymeleaf.org">
 
 
 <head>
@@ -12,8 +12,8 @@
 <body>
 <header>
     <div class="hamburger-menu">
-        <input type="checkbox" id="menu-btn-check">
-        <label for="menu-btn-check" class="menu-btn"><span></span></label>
+        <input id="menu-btn-check" type="checkbox">
+        <label class="menu-btn" for="menu-btn-check"><span></span></label>
         <!--ここからメニュー-->
         <div class="menu-content">
             <ul>
@@ -37,14 +37,13 @@
 </div>
 
 <!-- コンテンツの表示 -->
-<main layout:fragment="content"
-      class="offcanvas-outside bg-light">
+<main class="offcanvas-outside bg-light"
+      layout:fragment="content">
     <div class="container-fluid">
         <!-- トグルボタン -->
         <div th:replace="~{fragments/sidebar :: toggler}">
         </div>
     </div>
-</main>
 <!--参加ゼミ一覧表示-->
     <table>
         <thead>
@@ -56,12 +55,12 @@
         <tbody>
         <!-- groupsが空でない場合、groupsの要素をgroupに格納する -->
         <!-- 要素の数ループする -->
-        <tr th:if="${!#lists.isEmpty(groups)}" th:each="group : ${groups}">
-            <form method="POST" action="student_seminar_menu">
-                <input type="hidden" name="groupId" value="group.groupId">
+        <tr th:each="group : ${groups}" th:if="${!#lists.isEmpty(groups)}">
+            <form action="student_seminar_menu" method="POST">
+                <input name="groupId" type="hidden" value="group.groupId">
                 <td th:text="${group.groupName}"></td>
                 <td th:text="${group.groupBio}"></td>
-                <td><input type="submit" th:value="メニュー"></td>
+                <td><input th:value="メニュー" type="submit"></td>
 
             </form>
         </tr>
@@ -78,18 +77,18 @@
     <tbody>
     <!-- groupsが空でない場合、groupsの要素をgroupに格納する -->
     <!-- 要素の数ループする -->
-    <tr th:if="${!#lists.isEmpty(groups)}" th:each="group : ${groups}">
-        <form method="POST" action="student_competition_menu">
-            <input type="hidden" name="groupId" value="group.groupId">
+    <tr th:each="group : ${groups}" th:if="${!#lists.isEmpty(groups)}">
+        <form action="student_competition_menu" method="POST">
+            <input name="groupId" type="hidden" value="group.groupId">
         <td th:text="${group.groupName}"></td>
         <td th:text="${group.groupBio}"></td>
-            <td><input type="submit" th:value="メニュー"></td>
+            <td><input th:value="メニュー" type="submit"></td>
 
         </form>
     </tr>
     </tbody>
 </table>
-
+</main>
 
 </body>
 </html>
