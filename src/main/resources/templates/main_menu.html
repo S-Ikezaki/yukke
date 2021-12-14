@@ -29,13 +29,14 @@
     <div sec:authorize="hasRole('3')">
         <button th:href="@{/admin/group_create}">グループ作成画面</button>
     </div>
-    <button th:href="@{/edit_password.html}">パスワード</button>
+    <button th:href="@{/edit_password.html}">パスワード変更</button>
     <div sec:authorize="hasRole('1')">
         <button th:href="@{/user_list}">ユーザ一覧画面</button>
     </div>
     <div sec:authorize="hasRole('3')">
         <button th:href="@{/admin/user_list}">ユーザ一覧画面</button>
     </div>
+    <br>
     <!--参加ゼミ一覧表示-->
     <table>
         <thead>
@@ -47,17 +48,18 @@
         <tbody>
         <!-- groupsが空でない場合、groupsの要素をgroupに格納する -->
         <!-- 要素の数ループする -->
-        <tr th:if="${!#lists.isEmpty(groups)}" th:each="group : ${groups}">
+        <tr th:if="${!#lists.isEmpty(seminars)}" th:each="seminar : ${seminars}">
             <form method="POST" action="@{/student_seminar_menu" }>
                 <input type="hidden" name="groupId" value="group.groupId">
-                <td th:text="${group.groupName}"></td>
-                <td th:text="${group.groupBio}"></td>
+                <td th:text="${seminar.groupName}"></td>
+                <td th:text="${seminar.groupBio}"></td>
                 <td><input type="submit" th:value="メニュー"></td>
 
             </form>
         </tr>
         </tbody>
     </table>
+    <br><br>
     <!--参加コンペ一覧表示-->
     <table>
         <thead>
@@ -69,11 +71,11 @@
         <tbody>
         <!-- groupsが空でない場合、groupsの要素をgroupに格納する -->
         <!-- 要素の数ループする -->
-        <tr th:if="${!#lists.isEmpty(groups)}" th:each="group : ${groups}">
+        <tr th:if="${!#lists.isEmpty(competitions)}" th:each="competition : ${competitions}">
             <form method="POST" action="{/student_competition_menu" }>
                 <input type="hidden" name="groupId" value="group.groupId">
-                <td th:text="${group.groupName}"></td>
-                <td th:text="${group.groupBio}"></td>
+                <td th:text="${competition.groupName}"></td>
+                <td th:text="${competition.groupBio}"></td>
                 <td><input type="submit" th:value="メニュー"></td>
 
             </form>
