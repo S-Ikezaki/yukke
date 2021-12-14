@@ -13,16 +13,8 @@ public class SecurityController {
 
     private final GroupRepository groupRepository;
 
-    public SecurityController(
-            GroupRepository groupRepository
-    ){
-        this.groupRepository = groupRepository;
-    }
-
     @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
+    public String login() { return "login"; }
 
     @GetMapping("/")
     public String showMenu(Authentication loginUser, Model model) {
@@ -37,7 +29,6 @@ public class SecurityController {
 >>>>>>> 481e185f40812a802c63d450565e7a1f81603f10
         return "main_menu";
     }
-
 
     @GetMapping("/admin/group_create")
         public String createGroup(){
