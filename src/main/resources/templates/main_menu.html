@@ -22,9 +22,9 @@
         </div>
     </div>
 
-    <button onclick=href="@{/group_search}">検索画面</button>
+    <button th:attr="onClick='location.href=\'' + @{/groups/group_search} + '\''">検索画面</button>
     <div sec:authorize="hasRole('1')">
-        <button th:href="@{/group_create}">グループ作成画面</button>
+        <button th:href="@{/groups/group_create}">グループ作成画面</button>
     </div>
     <div sec:authorize="hasRole('3')">
         <button th:href="@{/admin/group_create}">グループ作成画面</button>
