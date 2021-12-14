@@ -37,21 +37,21 @@ public class SecurityController {
 
         model.addAttribute("username", loginUser.getName());
         model.addAttribute("role", loginUser.getAuthorities());
-<<<<<<< HEAD
+
 
         System.out.println(loginUser.getAuthorities());
         model.addAttribute("groups",groupRepository.findAll());
-=======
+
         model.addAttribute("seminars",seminar);
         model.addAttribute("competitions",competition);
->>>>>>> 4388e1679a78c85f9b42fafa8dfde45e4a3126b8
+
         return "main_menu";
     }
 
-    @GetMapping("/admin/group_create")
-        public String createGroup(){
-            return "test1";
-        }
+//    @GetMapping("/admin/group_create")
+//        public String createGroup(){
+//            return "test1";
+//        }
     }
 
 

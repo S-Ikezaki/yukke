@@ -150,4 +150,9 @@ public class UserController {
 
         return "user_list";
     }
+
+    @GetMapping("/admin/group_create")
+    public String createGroup(){
+        return "test1";
+    }
 }
