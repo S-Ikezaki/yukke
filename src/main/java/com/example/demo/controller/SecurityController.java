@@ -21,12 +21,9 @@ public class SecurityController {
         System.out.println(loginUser.getName());
         model.addAttribute("username", loginUser.getName());
         model.addAttribute("role", loginUser.getAuthorities());
-<<<<<<< HEAD
-        System.out.println(loginUser.getAuthorities());
 
-=======
+        System.out.println(loginUser.getAuthorities());
         model.addAttribute("groups",groupRepository.findAll());
->>>>>>> 481e185f40812a802c63d450565e7a1f81603f10
         return "main_menu";
     }
 

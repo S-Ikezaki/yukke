@@ -77,10 +77,8 @@ public class UserController {
         User user = new User();
         user.setUserId("12");
         user.setUserName(userName);
-<<<<<<< HEAD
+
 //        user.setUserRole(userRole);
-=======
->>>>>>> 481e185f40812a802c63d450565e7a1f81603f10
         userRepository.save(user);
 
         model.addAttribute("user", user);
