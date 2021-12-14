@@ -11,6 +11,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("groups")
@@ -59,12 +61,34 @@ public class GroupController {
         return "hoge";
     }
 
+    // グループ検索
+    @GetMapping("/group_search")
+    public String SearchGroup(Model model) {
+        System.out.println("グループサーチ");
+
+        List<Group> groupList = groupRepository.findAll();
+        List<Group> seminar = new ArrayList<Group>();
+        List<Group> competition = new ArrayList<Group>();
+
+        for (Group group: groupList){
+            if(group.getGroupRole() == 0) {
+                seminar.add(group);
+            } else {
+                competition.add(group);
+            }
+        }
+        model.addAttribute("seminars",seminar);
+        model.addAttribute("competitions",competition);
+
+        return "search_group";
+    }
+
     //グループの一覧表示
     @GetMapping("/showGroupList")
 //    @ResponseBody
     public String showGroupList(Model model){
         model.addAttribute("groups",groupRepository.findAll());
-        return "teacher_main_menu";
+        return "main_menu";
     }
 
     //参加しているグループの一覧表示
