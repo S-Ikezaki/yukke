@@ -64,7 +64,7 @@ public class GroupController {
 //    @ResponseBody
     public String showGroupList(Model model){
         model.addAttribute("groups",groupRepository.findAll());
-        return "teacher_main_menu";
+        return "main_menu";
     }
 
     //参加しているグループの一覧表示

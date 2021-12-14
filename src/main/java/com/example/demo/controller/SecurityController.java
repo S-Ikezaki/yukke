@@ -19,6 +19,8 @@ public class SecurityController {
         System.out.println(loginUser.getName());
         model.addAttribute("username", loginUser.getName());
         model.addAttribute("role", loginUser.getAuthorities());
+        System.out.println(loginUser.getAuthorities());
+
         return "main_menu";
     }
 
