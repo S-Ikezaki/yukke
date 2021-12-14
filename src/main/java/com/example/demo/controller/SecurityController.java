@@ -1,4 +1,6 @@
 package com.example.demo.controller;
+
+import com.example.demo.repository.GroupRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 @Controller
 public class SecurityController {
+
+    private final GroupRepository groupRepository;
+
+    public SecurityController(
+            GroupRepository groupRepository
+    ){
+        this.groupRepository = groupRepository;
+    }
 
     @GetMapping("/login")
     public String login() {
@@ -19,6 +29,7 @@ public class SecurityController {
         System.out.println(loginUser.getName());
         model.addAttribute("username", loginUser.getName());
         model.addAttribute("role", loginUser.getAuthorities());
+        model.addAttribute("groups",groupRepository.findAll());
         return "main_menu";
     }
 

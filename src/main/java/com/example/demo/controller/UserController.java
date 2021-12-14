@@ -72,13 +72,11 @@ public class UserController {
     @PostMapping("/add")
     public String addUser(
             @ModelAttribute() String userName,
-            @ModelAttribute() int userRole,
             Model model
     ){
         User user = new User();
         user.setUserId("12");
         user.setUserName(userName);
-        user.setUserRole(userRole);
         userRepository.save(user);
 
         model.addAttribute("user", user);
