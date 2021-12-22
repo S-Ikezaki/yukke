@@ -4,6 +4,7 @@ import com.example.demo.model.group.Group;
 import com.example.demo.model.user.User;
 import com.example.demo.repository.GroupRepository;
 import com.example.demo.repository.UserRepository;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -61,6 +62,25 @@ public class GroupController {
         return "hoge";
     }
 
+    // グループ作成画面へページ遷移
+    @GetMapping("/group_create")
+    public String CreateGroupPage(@ModelAttribute("group") Group group) {
+        return "create_group";
+    }
+
+    //グループ作成
+    @PostMapping("/create_group")
+    public String CreateGroup(@ModelAttribute Group group, BindingResult result, Model model) {
+
+        if(result.hasErrors()){
+            return "login";
+        }
+
+        groupRepository.save(group);
+        return "main_menu";
+    }
+
+
     // グループ検索
     @GetMapping("/group_search")
     public String SearchGroup(Model model) {
@@ -81,6 +101,13 @@ public class GroupController {
         model.addAttribute("competitions",competition);
 
         return "search_group";
+    }
+
+    // 非同期通信によるグループ検索
+    @Async("Thread1")
+    public List<Group> AsyncSearchGroup() {
+        List<Group> groupList = groupRepository.findAll();
+        return groupList;
     }
 
     //グループの一覧表示

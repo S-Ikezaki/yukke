@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<User,String> {
 
     //何らかのタグを持つユーザーのタグ名とユーザー名を一覧表示
     @Query(name = "User.findByTagNq",nativeQuery = true)
@@ -42,6 +42,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
 //    @Query(name = "User.findEmployeeByRole")
 //    List<User> findEmployeeByRole(String userRole);
 
-
+    List<User> findByUserNameLike(String name);
 
 }

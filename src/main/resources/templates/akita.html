@@ -1,0 +1,110 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{layout/layout}">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8" th:remove="tag">-->
+<!--</head>-->
+<!--&lt;!&ndash;<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>&ndash;&gt;-->
+<!--<script src="webjars/jquery/3.6.0/jquery.min.js"></script>-->
+<!--<body>-->
+
+<!--&lt;!&ndash; サイドバーの表示 &ndash;&gt;-->
+<!--<div layout:fragment="sidebar"-->
+<!--     th:replace="~{fragments/sidebar :: sidebar}">-->
+<!--</div>-->
+
+<!--&lt;!&ndash; コンテンツの表示 &ndash;&gt;-->
+<!--<main layout:fragment="content"-->
+<!--      class="offcanvas-outside bg-light">-->
+<!--    <div class="container-fluid">-->
+<!--        &lt;!&ndash; トグルボタン &ndash;&gt;-->
+<!--        <div th:replace="~{fragments/sidebar :: toggler}">-->
+<!--        </div>-->
+
+<!--        <div class="row">-->
+<!--            <div class="col">-->
+
+<!--                <div class="card shadow">-->
+<!--                    <div class="card-header">-->
+<!--                        <h6 class="text-navy my-2">-->
+<!--                            ログイン情報-->
+<!--                        </h6>-->
+<!--                    </div>-->
+
+<!--                    <div class="card-text">-->
+<!--                        <form action="/getUser" method="get">-->
+<!--                            <input type="text" name="keyword" placeholder="ユーザ名">-->
+<!--                            <input type="submit" th:value="検索">-->
+<!--                            <input type="button" id="sub" th:name="jsub" th:value="Jサーチ">-->
+<!--                        </form>-->
+<!--                    </div>-->
+
+<!--                    <div class="card-body table-responsive">-->
+<!--                        <table>-->
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                                <th>UserId</th>-->
+<!--                                <th>UserName</th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                            &lt;!&ndash; groupsが空でない場合、groupsの要素をgroupに格納する &ndash;&gt;-->
+<!--                            &lt;!&ndash; 要素の数ループする &ndash;&gt;-->
+<!--                            <tr th:each="user : ${users}" th:if="${!#lists.isEmpty(users)}">-->
+<!--                                <form action="student_seminar_menu" method="POST">-->
+<!--                                    <input name="groupId" type="hidden" value="group.groupId">-->
+<!--                                    <td th:text="${user.getUserId()}"></td>-->
+<!--                                    <td th:text="${user.getUserName()}"></td>-->
+<!--                                    <td><input th:value="メニュー" type="submit"></td>-->
+
+<!--                                </form>-->
+<!--                            </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</main>-->
+
+<!--<script>-->
+<!--    $(function () {-->
+<!--        $('sub').on('click',function(){-->
+<!--            alert("クリックされました");-->
+<!--    })-->
+<!--    });-->
+
+<!--    // $(function() {-->
+<!--    //     $("#jsub").on('click',function (){-->
+<!--    //         $.ajax({-->
+<!--    //             type: 'GET', // HTTPリクエストメソッドの指定-->
+<!--    //             url: '/getGroup', // 送信先URLの指定-->
+<!--    //             async: true, // 非同期通信フラグの指定-->
+<!--    //             dataType: 'json', // 受信するデータタイプの指定-->
+<!--    //             timeout: 10000, // タイムアウト時間の指定-->
+<!--    //             data: {-->
+<!--    //                 id: 1,-->
+<!--    //                 name: 'brisk' // クエリパラメータの指定。サーバーに送信したいデータを指定-->
+<!--    //             }-->
+<!--    //         })-->
+<!--    //             .done(function(data) {-->
+<!--    //                 // 通信が成功したときの処理-->
+<!--    //                 console.log("成功")-->
+<!--    //             })-->
+<!--    //             .fail(function() {-->
+<!--    //                 // 通信が失敗したときの処理-->
+<!--    //                 console.log("失敗")-->
+<!--    //             })-->
+<!--    //             .always(function() {-->
+<!--    //                 // 通信が完了したときの処理-->
+<!--    //                 console.log("完了")-->
+<!--    //             });-->
+<!--    //     });-->
+<!--    // });-->
+<!--</script>-->
+
+<!--</body>-->
+<!--</html>-->
