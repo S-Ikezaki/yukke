@@ -8,22 +8,54 @@
 <body>
 <input type="button" id="Obtain" th:value="送信">
 
+<form method="get" th:action="@{users/akita}">
+
+    <input type="text" name="keyword" placeholder="名前検索">
+    <input type="submit" th:value="検索">
+
+</form>
+
+<p id="number">ナンバー</p>
+
+<thead>
+<tr>
+    <th>ユーザー名</th>
+    <th></th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="user : ${users}" th:if="${!#lists.isEmpty(users)}">
+    <form method="post" th:action="@{users/akita}" th:object="${users}">
+        <td th:text="${user.getUserName()}">ユーザー名</td>
+        </td>
+        <td><input th:value="DM" type="submit"></td>
+    </form>
+</tr>
+</tbody>
 
 <script
         src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>
-<!--<script>-->
-<!--    $(function () {-->
-<!--        $("Obtain").on('click',function(){-->
-<!--            alert("クリックされました");-->
-<!--        })-->
-<!--    });-->
 
-<!--    // $('Obtain').click(function () {-->
-<!--    //     alert("クリックされました");-->
-<!--    // })-->
-<!--</script>-->
+<script>
+
+    let a = 0
+
+    $(function () {
+        $('#Obtain').on('click',function(){
+            alert("クリックされました");
+        })
+
+        $('#number').on('load', function (){
+            $('#number').innerText = a + 1
+        })
+    });
+
+    // $('Obtain').click(function () {
+    //     alert("クリックされました");
+    // })
+</script>
 <script src="js/demo.js"></script>
 <!--<script src="webjars/jquery/3.6.0/jquery.min.js"></script>-->
 </body>
